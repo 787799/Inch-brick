@@ -1,24 +1,43 @@
 import logo from './logo.svg';
 import './App.css';
+import PageOne from './components/pageOne';
+import PageTwo from './components/pageTwo';
+import PageThree from './components/pageThree';
+import { useState } from 'react';
 
 function App() {
+
+  const [step,setStep]=useState(1);
+
+  function submit1()
+  {
+    debugger
+    
+      setStep(step+1);
+      if(step===3)
+      {
+        setStep(1)
+      }
+    
+    
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        step===1?<PageOne submit={()=>submit1()}/>:null
+      }
+        {
+        step===2?<PageTwo submit={submit1}/>:null
+      }
+        {
+        step===3?<PageThree submit={submit1}/>:null
+      }
+    
+    
     </div>
+    
+
   );
 }
 
